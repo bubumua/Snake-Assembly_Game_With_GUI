@@ -1,0 +1,58 @@
+#include "res.h"
+
+//
+// Icon resources
+//
+IDI_ICON1            ICON                    "green.ico"
+IDI_ICON2            ICON                    "blue.ico"
+IDI_ICON3            ICON                    "orange.ico"
+IDI_HR               ICON                    "head_right.ico"
+IDI_HD               ICON                    "head_down.ico"
+IDI_HL               ICON                    "head_left.ico"
+IDI_HU               ICON                    "head_up.ico"
+
+//
+// Menu resources
+//
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+IDM_MENU1 MENU
+{
+    POPUP "GAME(&G)"
+    {
+        MENUITEM "Start\tC", IDM_START
+        MENUITEM "Stop\tX", IDM_STOP
+        MENUITEM SEPARATOR
+        MENUITEM "Quit\tZ", IDM_QUIT
+    }
+    POPUP "HELP(&H)", HELP
+    {
+        MENUITEM "How to play", IDM_CTRL
+        MENUITEM SEPARATOR
+        MENUITEM "About", IDM_ABOUT
+    }
+}
+
+//
+// Accelerator resources
+//
+// LANGUAGE 0, SUBLANG_NEUTRAL
+IDA_ACCELERATOR1 ACCELERATORS
+{
+    "c",IDM_START,  ASCII
+    "x",IDM_STOP,   ASCII
+    "z",IDM_QUIT,   ASCII
+}
+
+//
+// String resources
+//
+// LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+// STRINGTABLE DISCARDABLE
+// BEGIN
+//     IDS_POP1    "游戏"
+//     IDS_START   "开始"
+//     IDS_STOP    "暂停"
+//     IDS_QUIT    "退出"
+//     IDS_CTRL    "游戏方法"
+//     IDS_ABOUT   "关于"
+// END
