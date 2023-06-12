@@ -6,6 +6,8 @@
 
 关于MASM32SDK和其他工具的下载，可以翻翻我的[ASSEMBLY库](https://github.com/bubumua/ASSEMBLY)
 
+另外，本程序是有BUG的，身体会落下来一块不随整体移动。尽管在我的测试中它只出现过一次，但这应该是更新Map时对蛇的移动有问题导致的。那一块代码也确实有待优化。欢迎Fork&PR
+
 # MASM32汇编
 
 编译器：MASM32 SDK v11r
