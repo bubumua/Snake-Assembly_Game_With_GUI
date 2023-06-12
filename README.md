@@ -152,7 +152,7 @@ WNDCLASSEX 中最重要的成员是 lpfnWndProc。  lpfn 代表指向函数的�
 
 WNDCLASSEX结构体如下：
 
-```
+```assembly
 WNDCLASSEX STRUCT DWORD
   cbSize            DWORD      ?
   style             DWORD      ?
@@ -182,7 +182,7 @@ WNDCLASSEX ENDS
 - lpszClassName：这个窗口类的名称。  
 - hIconSm：与窗口类关联的小图标的句柄。  如果该成员为NULL，则系统在hIcon成员指定的图标资源中搜索合适大小的图标作为小图标。
 
-```
+```assembly
 mov    wc.cbSize,SIZEOF WNDCLASSEX                                ; fill values in members of wc
 mov    wc.style, CS_HREDRAW or CS_VREDRAW
 mov    wc.lpfnWndProc, OFFSET WndProc
@@ -298,7 +298,7 @@ WndProc endp
 
 ## 加个笔刷
 
-```
+```assembly
 WndProc proc hWnd:HWND, uMsg:UINT, wParam:WPARAM, lParam:LPARAM
                 local  hdc:dword
                 local  brush:dword
@@ -331,7 +331,7 @@ WndProc endp
 
 我们需要添加一个WM_LBUTTONDOWN的处理部分（对于右键与中间键，分別是WM_RBUTTONDOWN与WM_MBUTTONDOWN）．
 
-```
+```assembly
 .elseif uMsg == WM_LBUTTONDOWN
 	invoke MessageBox,hWnd,addr ClassName,0,MB_OK or MB_ICONINFORMATION
 ```
@@ -342,7 +342,7 @@ WndProc endp
 
 masm32中有类似C语言的结构体
 
-```
+```assembly
 GPostn struct
     row     byte ?
     col     byte ?
@@ -354,7 +354,7 @@ GPostn ends
 
 同时，也有类似数组下标访问的语法
 
-```
+```assembly
 .data
 GPostn struct
     row     byte ?
@@ -379,7 +379,7 @@ mov gameMap[eax].movein.row,0
 
 菜单的制作涉及到资源文件的运用。对于界面菜单的编写，使用ResEdit这个工具进行可视化编辑。
 
-```
+```assembly
 // .rc file
 #include "res.h"
 
@@ -421,7 +421,7 @@ IDA_ACCELERATOR1 ACCELERATORS
 
 ```
 
-```
+```assembly
 // All resource identified by 3-digit number 
 // icon 1XX
 #define IDI_ICON1 101
