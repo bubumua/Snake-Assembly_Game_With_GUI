@@ -62,7 +62,8 @@ InitMap proto
         ; define music about
         Mp3DeviceID      dd           0
         PlayFlag         dd           0
-        Mp3Device        db           "MPEGVideo",0     ; play .mp3, so use MPEGVideo
+        ; play .mp3, so use MPEGVideo
+        Mp3Device        db           "MPEGVideo",0     
         MUSIC_TOUSHIGE   db           "toushige.mp3",0
         
         ; orientation meaning:
