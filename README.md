@@ -8,7 +8,7 @@
 
 另外，本程序是有BUG的，身体会落下来一块不随整体移动。尽管在我的测试中它只出现过一次，但这应该是更新Map时对蛇的移动有问题导致的。那一块代码也确实有待优化。欢迎Fork&PR
 
-# MASM32汇编
+# 基于MASM32（ml）语法下的Win32汇编
 
 编译器：MASM32 SDK v11r
 
@@ -296,7 +296,7 @@ WndProc proc hWnd:HWND, uMsg:UINT, wParam:WPARAM, lParam:LPARAM
 WndProc endp
 ```
 
-这段将是自定义窗口的重头戏：定义窗口接收到不同消息后的处理方法。`WM_DESTROY`是唯一一个必须要处理的消息，一般出现在关闭窗口的时候。此时必须调用`PostQuitMessage`函数，将`WM_QUIT`这个消息发送给windows那个不停转的循环。`WM_QUIT`将会使`GetMessage`返回FALSE，
+这段将是自定义窗口的重头戏：定义窗口接收到不同消息后的处理方法。`WM_DESTROY`是唯一一个必须要处理的消息，一般出现在关闭窗口的时候。此时必须调用`PostQuitMessage`函数，将`WM_QUIT`这个消息发送给windows那个不停转的循环。`WM_QUIT`将会使`GetMessage`返回FALSE
 
 ## 加个笔刷
 
@@ -450,5 +450,23 @@ IDA_ACCELERATOR1 ACCELERATORS
 - lParam=hwndCtl；发送WM_COMMAND的子窗口的句柄
     - 对于菜单项发送的WM_COMMAND，其lParam的值为0
 
+## 定时器
 
+```asm
+; set TIMER to send timing signal
+invoke SetTimer, @hWnd, NULL, TIMER, NULL
+```
+
+定时器的作用就是每间隔一个固定的时间，就发出一个定时信号，或者调用一个回调函数。其参数如下：
+
+1. hWnd：指定接收定时器消息的窗口句柄。如果该参数为NULL，则定时器消息被发送到当前线程的消息队列中。
+2. nIDEvent：指定定时器的ID。如果该参数为NULL，则Windows会自动生成一个唯一的ID。
+3. uElapse：指定定时器的时间间隔，单位是毫秒。
+4. lpTimerFunc：指定定时器到期时调用的回调函数。如果该参数为NULL，则定时器消息被发送到hWnd指定的窗口的消息队列中。
+
+有设置就会有删除，你可以通过窗口句柄和定时器ID来删除一个定时器。如下所示：
+
+```
+invoke KillTimer, hWnd, MAINTIMER
+```
 
